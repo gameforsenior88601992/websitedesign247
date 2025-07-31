@@ -1,100 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "snjdjg8gp4");
-  </script>
-  
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="3;url=https://websitedesign247.pages.dev/game" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cookie Consent</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossword - Games for Seniors</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
 
-    body {
-      background: url('https://1992gameofthrone1992.github.io/imagetopa/norton-bg.png') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-    }
+        h1 {
+            margin: 30px 0;
+            font-size: 40px;
+            font-weight: 700;
+            color: #01579b;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    @media (max-width: 768px) {
-      body {
-        background: url('https://1992gameofthrone1992.github.io/imagetopa/norton-bg-mob.jpeg') no-repeat center center fixed;
-        background-size: cover;
-      }
-    }
+        h1::before {
+            content: '🧩';
+            font-size: 48px;
+        }
 
-    .cookie-box {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 30px 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      max-width: 90%;
-      width: 360px;
-      text-align: center;
-    }
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+        }
 
-    .cookie-box h2 {
-      margin-bottom: 10px;
-      font-size: 22px;
-      color: #222;
-    }
+        #crossword-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 2px;
+            background: #333;
+            padding: 2px;
+            margin-bottom: 20px;
+        }
 
-    .cookie-box p {
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 20px;
-    }
+        .cell {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #01579b;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-    .cookie-box button {
-      padding: 12px 25px;
-      font-size: 16px;
-      background-color: #1976d2;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        .cell.black {
+            background: #333;
+        }
 
-    .cookie-box button:hover {
-      background-color: #145aa6;
-    }
+        .cell.active {
+            background: #b3e5fc;
+        }
 
-    @media (max-width: 480px) {
-      .cookie-box {
-        padding: 20px;
-        width: 90%;
-      }
+        .cell.correct {
+            background: #66bb6a;
+            color: white;
+        }
 
-      .cookie-box h2 {
-        font-size: 20px;
-      }
+        .cell.incorrect {
+            background: #e53935;
+            color: white;
+        }
 
-      .cookie-box button {
-        font-size: 15px;
-        padding: 10px 20px;
-      }
-    }
-  </style>
+        #clues {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .clue-section {
+            width: 45%;
+        }
+
+        .clue-section h2 {
+            font-size: 24px;
+            color: #01579b;
+            margin-bottom: 10px;
+        }
+
+        .clue {
+            font-size: 18px;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #01579b;
+            margin-top: 20px;
+        }
+
+        #check-button, #reset-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        #check-button:hover, #reset-button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+            #crossword-grid {
+                grid-template-columns: repeat(5, 50px);
+                grid-template-rows: repeat(5, 50px);
+            }
+            .cell {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            .clue-section h2 {
+                font-size: 20px;
+            }
+            .clue {
+                font-size: 16px;
+            }
+            #message {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="cookie-box">
-    <h2>Cookie Consent</h2>
-    <p>This website uses cookies to enhance your browsing experience. By clicking accept, you agree to our use of cookies.</p>
-    <button onclick="window.location.href='https://websitedesign247.pages.dev/game'">Accept Cookies</button>
-  </div>
+    <h1>Crossword</h1>
+    <div id="game-container">
+        <div id="crossword-grid"></div>
+        <div id="clues">
+            <div class="clue-section">
+                <h2>Across</h2>
+                <div class="clue" data-number="1">1. Feeling of joy</div>
+                <div class="clue" data-number="3">3. Facial expression of joy</div>
+                <div class="clue" data-number="5">5. To encourage or uplift</div>
+            </div>
+            <div class="clue-section">
+                <h2>Down</h2>
+                <div class="clue" data-number="1">1. Optimistic expectation</div>
+                <div class="clue" data-number="2">2. Tranquility</div>
+                <div class="clue" data-number="4">4. Deep affection</div>
+            </div>
+        </div>
+        <div>
+            <button id="check-button">Check Answers</button>
+            <button id="reset-button">Reset Puzzle</button>
+        </div>
+        <div id="message"></div>
+    </div>
+    <script>
+        const gridSize = 5;
+        const puzzle = [
+            ['H', 'O', 'P', 'E', '#'],
+            ['A', '#', 'E', '#', '#'],
+            ['P', 'P', 'A', 'C', 'E'],
+            ['P', '#', 'C', '#', '#'],
+            ['Y', 'S', 'M', 'I', 'L', 'E']
+        ];
+        const answers = {
+            '1-across': 'HAPPY',
+            '3-across': 'SMILE',
+            '5-across': 'CHEER',
+            '1-down': 'HOPE',
+            '2-down': 'PEACE',
+            '4-down': 'LOVE'
+        };
+        let gridState = puzzle.map(row => row.map(cell => cell === '#' ? '#' : ''));
+        let selectedCell = null;
+
+        function initializeGrid() {
+            const grid = document.getElementById('crossword-grid');
+            grid.innerHTML = '';
+            puzzle.forEach((row, i) => {
+                row.forEach((cell, j) => {
+                    const cellElement = document.createElement('div');
+                    cellElement.classList.add('cell');
+                    if (cell === '#') {
+                        cellElement.classList.add('black');
+                    } else {
+                        cellElement.textContent = gridState[i][j];
+                        cellElement.dataset.row = i;
+                        cellElement.dataset.col = j;
+                        cellElement.addEventListener('click', () => selectCell(cellElement));
+                    }
+                    grid.appendChild(cellElement);
+                });
+            });
+        }
+
+        function selectCell(cellElement) {
+            if (selectedCell) {
+                selectedCell.classList.remove('active');
+            }
+            selectedCell = cellElement;
+            selectedCell.classList.add('active');
+        }
+
+        function handleInput(event) {
+            if (selectedCell && !selectedCell.classList.contains('black')) {
+                const key = event.key.toUpperCase();
+                if (/^[A-Z]$/.test(key)) {
+                    const row = parseInt(selectedCell.dataset.row);
+                    const col = parseInt(selectedCell.dataset.col);
+                    gridState[row][col] = key;
+                    selectedCell.textContent = key;
+                    moveToNextCell(row, col);
+                } else if (event.key === 'Backspace') {
+                    const row = parseInt(selectedCell.dataset.row);
+                    const col = parseInt(selectedCell.dataset.col);
+                    gridState[row][col] = '';
+                    selectedCell.textContent = '';
+                }
+            }
+        }
+
+        function moveToNextCell(row, col) {
+            // Try moving right for across clues
+            if (col < gridSize - 1 && puzzle[row][col + 1] !== '#') {
+                const nextCell = document.querySelector(`.cell[data-row="${row}"][data-col="${col + 1}"]`);
+                selectCell(nextCell);
+            } else if (row < gridSize - 1 && puzzle[row + 1][col] !== '#') {
+                const nextCell = document.querySelector(`.cell[data-row="${row + 1}"][data-col="${col}"]`);
+                selectCell(nextCell);
+            }
+        }
+
+        function checkAnswers() {
+            let allCorrect = true;
+            document.querySelectorAll('.cell:not(.black)').forEach(cell => {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                cell.classList.remove('correct', 'incorrect');
+                if (gridState[row][col] === puzzle[row][col]) {
+                    cell.classList.add('correct');
+                } else if (gridState[row][col] !== '') {
+                    cell.classList.add('incorrect');
+                    allCorrect = false;
+                } else {
+                    allCorrect = false;
+                }
+            });
+            document.getElementById('message').textContent = allCorrect ? 'Congratulations! You solved the puzzle!' : 'Some answers are incorrect or incomplete.';
+        }
+
+        function resetPuzzle() {
+            gridState = puzzle.map(row => row.map(cell => cell === '#' ? '#' : ''));
+            document.getElementById('message').textContent = '';
+            if (selectedCell) {
+                selectedCell.classList.remove('active');
+                selectedCell = null;
+            }
+            initializeGrid();
+        }
+
+        document.addEventListener('keydown', handleInput);
+        document.getElementById('check-button').addEventListener('click', checkAnswers);
+        document.getElementById('reset-button').addEventListener('click', resetPuzzle);
+
+        initializeGrid();
+    </script>
 </body>
 </html>
